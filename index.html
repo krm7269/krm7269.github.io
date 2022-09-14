@@ -66,14 +66,16 @@ function start(e) {
 	}
 }	
 function stop(e) {
-	var stream = video.srcObject;
-	var tracks = stream.getTracks();
+	if (video.srcObject != null) {
+		var stream = video.srcObject;
+		var tracks = stream.getTracks();
 
-	for (var i = 0; i < tracks.length; i++) {
-		var track = tracks[i];
-		track.stop();
+		for (var i = 0; i < tracks.length; i++) {
+			var track = tracks[i];
+			track.stop();
+		}
+		video.srcObject = null;
 	}
-	video.srcObject = null;
 }
 </script>
 	
@@ -103,14 +105,16 @@ function startCV(e) {
 	}
 }	
 function stopCV(e) {
-	var stream = videoCV.srcObject;
-	var tracks = stream.getTracks();
+	if (videoCV.srcObject != null) {
+		var stream = videoCV.srcObject;
+		var tracks = stream.getTracks();
 
-	for (var i = 0; i < tracks.length; i++) {
-		var track = tracks[i];
-		track.stop();
+		for (var i = 0; i < tracks.length; i++) {
+			var track = tracks[i];
+			track.stop();
+		}
+		videoCV.srcObject = null;
 	}
-	videoCV.srcObject = null;
 }
 </script>
 
