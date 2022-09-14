@@ -104,18 +104,13 @@ function stop(e) {
 	</tbody>
 </table>
 <button id="stopCV">Stop Video</button> <button id="startCV">Start Video</button>
-<script async type="text/javascript" src="opencv.js">
+<script>
 var videoCV = document.querySelector("#videoElementCV");
 var stopVideoCV = document.querySelector("#stopCV");
 var startVideoCV = document.querySelector("#startCV");
 stopVideoCV.addEventListener("click", stopCV, false);
 startVideoCV.addEventListener("click", startCV, false);
-	
-let videoCV2 = document.getElementById('videoElementCV');
-let src = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC4);
-let dst = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC1);
-let cap = new cv.VideoCapture(videoCV2);
-	
+
 function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia({ video: true })
@@ -125,8 +120,6 @@ function startCV(e) {
 			.catch(function (err0r) {
 				console.log("Something went wrong!");
 			});
-		// schedule first one.
-		setTimeout(processVideo, 0);
 	}
 }	
 function stopCV(e) {
@@ -139,27 +132,8 @@ function stopCV(e) {
 			track.stop();
 		}
 		videoCV.srcObject = null;
-		src.delete();
-            	dst.delete();
 	}
 }
-<!-- this is the openCV processing -->
-const FPS = 30;
-function processVideo() {
-    try {
-        let begin = Date.now();
-        // start processing.
-        cap.read(src);
-        cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-        cv.imshow('videoElementCV2', dst);
-        // schedule the next one.
-        let delay = 1000/FPS - (Date.now() - begin);
-        setTimeout(processVideo, delay);
-    } catch (err) {
-        utils.printError(err);
-    }
-};
-
 </script>
 
 </body>
