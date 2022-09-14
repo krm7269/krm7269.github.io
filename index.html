@@ -15,7 +15,12 @@
 	height: 375px;
 	background-color: #666;
 }
-#videoElement2 {
+#videoElementCV {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+#videoElementCV2 {
 	width: 500px;
 	height: 375px;
 	background-color: #666;
@@ -83,21 +88,23 @@ function stop(e) {
 	
 <h2>OpenCV.js Testing</h2>
 <div id="container">
-	<video autoplay="true" id="videoElement2">
-	</video>
+	<video autoplay="true" id="videoElementCV"></video>
+</div>
+<div id="container">
+	<video autoplay="true" id="videoElementCV2"></video>
 </div>
 <button id="stopCV">Stop Video</button> <button id="startCV">Start Video</button>
 <script>
-var videoCV = document.querySelector("#videoElement2");
+var videoCV = document.querySelector("#videoElementCV");
 var stopVideoCV = document.querySelector("#stopCV");
 var startVideoCV = document.querySelector("#startCV");
 stopVideoCV.addEventListener("click", stopCV, false);
 startVideoCV.addEventListener("click", startCV, false);
 	
-let video = document.getElementById('videoElement2');
-let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
-let cap = new cv.VideoCapture(videoCV);
+let videoCV2 = document.getElementById('videoElementCV');
+let src = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC4);
+let dst = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC1);
+let cap = new cv.VideoCapture(videoCV2);
 	
 function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
@@ -140,7 +147,7 @@ function processVideo() {
         // start processing.
         cap.read(src);
         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-        cv.imshow('canvasOutput', dst);
+        cv.imshow('videoElementCV2', dst);
         // schedule the next one.
         let delay = 1000/FPS - (Date.now() - begin);
         setTimeout(processVideo, delay);
