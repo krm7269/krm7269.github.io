@@ -89,20 +89,25 @@ function stop(e) {
 <h2>OpenCV.js Testing</h2>
 <table cellpadding="0" cellspacing="0" width="0" height="0" border="0">
 	<tbody><tr><td>
+			<!--this is for the first camera-->
 			<div id="container">
 				<video autoplay="true" id="videoElementCV"></video>
 			</div>
 		</td>
 		<td>
+			<!--this is for the second camera-->
 			<div id="container">
 				<video autoplay="true" id="videoElementCV2"></video>
 			</div>
 	</td></tr></tbody>
 </table>
+<!--this is for the first camera-->
 <button id="stopCV">Stop Video</button> 
 <button id="startCV">Start Video</button> 
+<!--this is for the second camera-->
 <button id="stopCV2" style="margin-left:345px">Stop Video</button> 
 <button id="startCV2">Start Video</button>
+<!--this is for the first camera-->
 <script>
 var videoCV = document.querySelector("#videoElementCV");
 var stopVideoCV = document.querySelector("#stopCV");
@@ -134,6 +139,37 @@ function stopCV(e) {
 	}
 }
 </script>
+<!--this is for the second camera-->
+<script>
+var videoCV2 = document.querySelector("#videoElementCV2");
+var stopVideoCV2 = document.querySelector("#stopCV2");
+var startVideoCV2 = document.querySelector("#startCV2");
+stopVideoCV2.addEventListener("click", stopCV2, false);
+startVideoCV2.addEventListener("click", startCV2, false);
 
+function startCV2(e) {
+	if (navigator.mediaDevices.getUserMedia) {
+		navigator.mediaDevices.getUserMedia({ video: true })
+			.then(function (stream) {
+				videoCV2.srcObject = stream;
+			})
+			.catch(function (err0r) {
+				console.log("Something went wrong!");
+			});
+	}
+}	
+function stopCV2(e) {
+	if (videoCV2.srcObject != null) {
+		var stream = videoCV2.srcObject;
+		var tracks = stream.getTracks();
+
+		for (var i = 0; i < tracks.length; i++) {
+			var track = tracks[i];
+			track.stop();
+		}
+		videoCV2.srcObject = null;
+	}
+}
+</script>
 </body>
 </html>
