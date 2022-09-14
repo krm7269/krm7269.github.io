@@ -34,6 +34,9 @@ button:active {
 <body>
 <h1>Senior Project Testing</h1>
 <p>This is a testing website for me to mess with front end development and openCV.</p>
+	
+<!--.......................This is for the webcam block..................-->
+
 <h2>Webcam Testing</h2>
 <div id="container">
 	<video autoplay="true" id="videoElement">
@@ -68,20 +71,22 @@ function stop(e) {
 	video.srcObject = null;
 }
 </script>
-
+	
+<!--.......................This is for the OpenCV block..................-->
+	
 <h2>OpenCV.js Testing</h2>
 <div id="container">
 	<video autoplay="true" id="videoElement">
 	</video>
 </div>
-<button id="stop">Stop Video</button> <button id="start">Start Video</button>
+<button id="stopCV">Stop Video</button> <button id="startCV">Start Video</button>
 <script>
 var video = document.querySelector("#videoElement");
-var stopVideo = document.querySelector("#stop");
-var startVideo = document.querySelector("#start");
-stopVideo.addEventListener("click", stop, false);
-startVideo.addEventListener("click", start, false);
-function start(e) {
+var stopVideoCV = document.querySelector("#stopCV");
+var startVideoCV = document.querySelector("#startCV");
+stopVideoCV.addEventListener("click", stopCV, false);
+startVideoCV.addEventListener("click", startCV, false);
+function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia({ video: true })
 			.then(function (stream) {
@@ -92,7 +97,7 @@ function start(e) {
 			});
 	}
 }	
-function stop(e) {
+function stopCV(e) {
 	var stream = video.srcObject;
 	var tracks = stream.getTracks();
 
