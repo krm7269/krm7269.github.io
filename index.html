@@ -15,6 +15,11 @@
 	height: 375px;
 	background-color: #666;
 }
+#videoElement2 {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
 button {
 	margin-top: 20px;
 	font-size: 12px;
@@ -76,12 +81,12 @@ function stop(e) {
 	
 <h2>OpenCV.js Testing</h2>
 <div id="container">
-	<video autoplay="true" id="videoElement">
+	<video autoplay="true" id="videoElement2">
 	</video>
 </div>
 <button id="stopCV">Stop Video</button> <button id="startCV">Start Video</button>
 <script>
-var video = document.querySelector("#videoElement");
+var videoCV = document.querySelector("#videoElement2");
 var stopVideoCV = document.querySelector("#stopCV");
 var startVideoCV = document.querySelector("#startCV");
 stopVideoCV.addEventListener("click", stopCV, false);
@@ -90,7 +95,7 @@ function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia({ video: true })
 			.then(function (stream) {
-				video.srcObject = stream;
+				videoCV.srcObject = stream;
 			})
 			.catch(function (err0r) {
 				console.log("Something went wrong!");
@@ -98,14 +103,14 @@ function startCV(e) {
 	}
 }	
 function stopCV(e) {
-	var stream = video.srcObject;
+	var stream = videoCV.srcObject;
 	var tracks = stream.getTracks();
 
 	for (var i = 0; i < tracks.length; i++) {
 		var track = tracks[i];
 		track.stop();
 	}
-	video.srcObject = null;
+	videoCV.srcObject = null;
 }
 </script>
 
