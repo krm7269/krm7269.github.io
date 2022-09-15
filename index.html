@@ -105,7 +105,8 @@ function stop(e) {
 <button id="stopCV">Stop Video</button> 
 <button id="startCV">Start Video</button>
 <!--this is for the first camera-->
-<script async type="text/javascript" src="opencv.js">
+<script async type="text/javascript" src="opencv.js"></script>
+<script>
 var videoCV = document.querySelector("#videoElementCV");
 var stopVideoCV = document.querySelector("#stopCV");
 var startVideoCV = document.querySelector("#startCV");
@@ -120,13 +121,6 @@ function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
 			videoCV.srcObject = stream;
-		}).catch(function (err0r) {
-			console.log("Something went wrong!");
-		});
-	}
-	if (navigator.mediaDevices.getUserMedia) {
-		navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-			videoCV2.srcObject = stream;
 		}).catch(function (err0r) {
 			console.log("Something went wrong!");
 		});
