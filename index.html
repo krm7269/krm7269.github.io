@@ -121,10 +121,10 @@ function startCV(e) {
 			.catch(function (err0r) {
 				console.log("Something went wrong!");
 			});
-		let videoCV2 = document.getElementById('videoElementCV');
-		let src = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC4);
-		let dst = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC1);
-		let cap = new cv.VideoCapture(videoCV2);	
+		let videoCV = document.getElementById('videoElementCV');
+		let src = new cv.Mat(videoCV.height, videoCV.width, cv.CV_8UC4);
+		let dst = new cv.Mat(videoCV.height, videoCV.width, cv.CV_8UC1);
+		let cap = new cv.VideoCapture(videoCV);	
 		// schedule the first one.
 		setTimeout(processVideo, 0);
 	}
