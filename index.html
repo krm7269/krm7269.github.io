@@ -137,7 +137,6 @@ function startCV(e) {
 	utils.clearError();
 
 	streaming = true;
-    startAndStop.innerText = 'Stop';
     videoInput.width = videoInput.videoWidth;
     videoInput.height = videoInput.videoHeight;
     let video = document.getElementById('videoElementCV');
@@ -145,12 +144,6 @@ function startCV(e) {
 	let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
 	let cap = new cv.VideoCapture(video);
 	try {
-        if (!streaming) {
-            // clean and stop.
-            src.delete();
-            dst.delete();
-            return;
-        }
         let begin = Date.now();
         // start processing.
         cap.read(src);
