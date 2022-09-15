@@ -175,10 +175,10 @@ function stopCV(e) {
 		}
 		videoCV.srcObject = null;
 		src.delete();
-        	dst.delete();
+        dst.delete();
 		utils.stopCamera();
-        	streaming = false;
-    		canvasContext.clearRect(0, 0, canvasOutput.width, canvasOutput.height);
+        streaming = false;
+    	canvasContext.clearRect(0, 0, canvasOutput.width, canvasOutput.height);
 	}
 }
 
