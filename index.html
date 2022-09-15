@@ -107,16 +107,26 @@ function stop(e) {
 <!--this is for the first camera-->
 <script async type="text/javascript" src="opencv.js">
 var videoCV = document.querySelector("#videoElementCV");
-var videoCV2 = document.querySelector("#videoElementCV2");
 var stopVideoCV = document.querySelector("#stopCV");
 var startVideoCV = document.querySelector("#startCV");
 stopVideoCV.addEventListener("click", stopCV, false);
 startVideoCV.addEventListener("click", startCV, false);
 
+let videoInput = document.getElementById('videoElementCV');
+let canvasOutput = document.getElementById('videoElementCV2');
+let canvasContext = canvasOutput.getContext('2d');
+
 function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
 			videoCV.srcObject = stream;
+		}).catch(function (err0r) {
+			console.log("Something went wrong!");
+		});
+	}
+	if (navigator.mediaDevices.getUserMedia) {
+		navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+			videoCV2.srcObject = stream;
 		}).catch(function (err0r) {
 			console.log("Something went wrong!");
 		});
@@ -140,6 +150,7 @@ function stopCV(e) {
 		}
 		videoCV.srcObject = null;
 		videoCV2.srcObject = null;
+		canvasContext.clearRect(0, 0, canvasOutput.width, canvasOutput.height);
 		src.delete();
         	dst.delete();
 	}
