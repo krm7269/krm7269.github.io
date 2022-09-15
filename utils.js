@@ -124,9 +124,7 @@ function Utils(errorOutputId) { // eslint-disable-line no-unused-vars
     };
 
     function onVideoCanPlay() {
-        if (self.onCameraStartedCallback) {
-            self.onCameraStartedCallback(self.stream, self.video);
-        }
+
     };
 
     this.startCamera = function(resolution, callback, videoId) {
