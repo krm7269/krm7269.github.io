@@ -150,7 +150,7 @@ function startCV(e) {
         let delay = 1000/FPS - (Date.now() - begin);
         setTimeout(processVideo, delay);
     } catch (err) {
-        utils.printError(err);
+   		console.log("Something went wrong!");
     }
 	// schedule the first one.
 	setTimeout(processVideo, 0);
