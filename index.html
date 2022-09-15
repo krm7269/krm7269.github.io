@@ -185,7 +185,7 @@ function processVideo() {
         // start processing.
         cap.read(src);
         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-        cv.imshow('canvasOutput', dst);
+        cv.imshow('videoElementCV2', dst);
         // schedule the next one.
         let delay = 1000/FPS - (Date.now() - begin);
         setTimeout(processVideo, delay);
