@@ -124,8 +124,6 @@ function startCV(e) {
 		let src = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC4);
 		let dst = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC1);
 		let cap = new cv.VideoCapture(videoCVinput);	
-		// schedule the first one.
-		setTimeout(processVideo, 0);
 	}
 }	
 function stopCV(e) {
@@ -165,6 +163,8 @@ function processVideo() {
         utils.printError(err);
     }
 };
+// schedule the first one.
+setTimeout(processVideo, 0);
 </script>
 
 </body>
