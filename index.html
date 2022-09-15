@@ -150,7 +150,7 @@ function processVideo(e) {
         cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
         cv.imshow('videoElementCV2', dst);
         // schedule the next one.
-        let delay = 1000/FPS - (Date.now() - begin);
+        let delay = FPS;
         setTimeout(processVideo, delay);
     } catch (err) {
    		console.log("Something went wrong!");
@@ -166,8 +166,6 @@ function stopCV(e) {
 			track.stop();
 		}
 		videoCV.srcObject = null;
-		src.delete();
-        dst.delete();
         streaming = false;
     	canvasContext.clearRect(0, 0, canvasOutput.width, canvasOutput.height);
 	}
