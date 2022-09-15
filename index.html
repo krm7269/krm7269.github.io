@@ -140,7 +140,7 @@ function stopCV(e) {
 }
 </script>
 <!--this is for the second camera-->
-<script>
+<script async type="text/javascript" src="opencv.js"></script>
 var videoCV2 = document.querySelector("#videoElementCV2");
 var stopVideoCV2 = document.querySelector("#stopCV2");
 var startVideoCV2 = document.querySelector("#startCV2");
@@ -156,6 +156,11 @@ function startCV2(e) {
 			.catch(function (err0r) {
 				console.log("Something went wrong!");
 			});
+		let videoCV1 = document.getElementById('videoElementCV');
+		let src = new cv.Mat(videoCV1.height, videoCV1.width, cv.CV_8UC4);
+		let dst = new cv.Mat(videoCV1.height, videoCV1.width, cv.CV_8UC1);
+		let cap = new cv.VideoCapture(videoCV1);
+		setTimeout(processVideo, 0);
 	}
 }	
 function stopCV2(e) {
@@ -168,8 +173,26 @@ function stopCV2(e) {
 			track.stop();
 		}
 		videoCV2.srcObject = null;
+        src.delete();
+        dst.delete();
 	}
 }
+
+const FPS = 30;
+function processVideo() {
+    try {
+        let begin = Date.now();
+        // start processing.
+        cap.read(src);
+        cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+        cv.imshow('canvasOutput', dst);
+        // schedule the next one.
+        let delay = 1000/FPS - (Date.now() - begin);
+        setTimeout(processVideo, delay);
+    } catch (err) {
+        utils.printError(err);
+    }
+};
 </script>
 </body>
 </html>
