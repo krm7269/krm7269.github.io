@@ -120,10 +120,6 @@ function startCV(e) {
 		}).catch(function (err0r) {
 			console.log("Something went wrong!");
 		});
-		let videoCVinput = document.getElementById('videoElementCV');
-		let src = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC4);
-		let dst = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC1);
-		let cap = new cv.VideoCapture(videoCVinput);	
 	}
 }	
 function stopCV(e) {
@@ -148,6 +144,10 @@ function stopCV(e) {
         	dst.delete();
 	}
 }
+let videoCVinput = document.getElementById('videoElementCV');
+let src = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC4);
+let dst = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC1);
+let cap = new cv.VideoCapture(videoCVinput);	
 const FPS = 30;
 function processVideo() {
     try {
