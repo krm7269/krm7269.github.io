@@ -132,7 +132,6 @@ function startCV(e) {
 			console.log("Something went wrong!");
 		});
 	}
-
 	streaming = true;
     videoInput.width = videoInput.videoWidth;
     videoInput.height = videoInput.videoHeight;
@@ -169,7 +168,6 @@ function stopCV(e) {
 		videoCV.srcObject = null;
 		src.delete();
         dst.delete();
-		utils.stopCamera();
         streaming = false;
     	canvasContext.clearRect(0, 0, canvasOutput.width, canvasOutput.height);
 	}
