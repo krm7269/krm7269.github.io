@@ -140,8 +140,8 @@ function startCV(e) {
 }	
 function processVideo(e) {
 	let video = document.getElementById('videoElementCV');
-	let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-	let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+	src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+	dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
 	let cap = new cv.VideoCapture(video);
 	try {
         let begin = Date.now();
