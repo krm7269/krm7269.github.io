@@ -120,6 +120,8 @@ let streaming = false;
 let videoInput = document.getElementById('videoElementCV');
 let canvasOutput = document.getElementById('videoElementCV2');
 let canvasContext = canvasOutput.getContext('2d');
+var src = null;
+var dst = null;
 const FPS = 30;
 	
 utils.loadOpenCv(() => {
