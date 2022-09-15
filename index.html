@@ -107,6 +107,7 @@ function stop(e) {
 <!--this is for the first camera-->
 <script async type="text/javascript" src="opencv.js">
 var videoCV = document.querySelector("#videoElementCV");
+var videoCV2 = document.querySelector("#videoElementCV2");
 var stopVideoCV = document.querySelector("#stopCV");
 var startVideoCV = document.querySelector("#startCV");
 stopVideoCV.addEventListener("click", stopCV, false);
@@ -114,17 +115,15 @@ startVideoCV.addEventListener("click", startCV, false);
 
 function startCV(e) {
 	if (navigator.mediaDevices.getUserMedia) {
-		navigator.mediaDevices.getUserMedia({ video: true })
-			.then(function (stream) {
-				videoCV.srcObject = stream;
-			})
-			.catch(function (err0r) {
-				console.log("Something went wrong!");
-			});
-		let videoCV = document.getElementById('videoElementCV');
-		let src = new cv.Mat(videoCV.height, videoCV.width, cv.CV_8UC4);
-		let dst = new cv.Mat(videoCV.height, videoCV.width, cv.CV_8UC1);
-		let cap = new cv.VideoCapture(videoCV);	
+		navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+			videoCV.srcObject = stream;
+		}).catch(function (err0r) {
+			console.log("Something went wrong!");
+		});
+		let videoCVinput = document.getElementById('videoElementCV');
+		let src = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC4);
+		let dst = new cv.Mat(videoCVinput.height, videoCVinput.width, cv.CV_8UC1);
+		let cap = new cv.VideoCapture(videoCVinput);	
 		// schedule the first one.
 		setTimeout(processVideo, 0);
 	}
@@ -139,8 +138,9 @@ function stopCV(e) {
 			track.stop();
 		}
 		videoCV.srcObject = null;
+		videoCV2.srcObject = null;
 		src.delete();
-        dst.delete();
+        	dst.delete();
 	}
 }
 const FPS = 30;
