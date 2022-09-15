@@ -141,27 +141,17 @@ function stopCV(e) {
 </script>
 <!--this is for the second camera-->
 <script async type="text/javascript" src="opencv.js">
-var videoCV2 = document.querySelector("#videoElementCV2");
 var stopVideoCV2 = document.querySelector("#stopCV2");
 var startVideoCV2 = document.querySelector("#startCV2");
 stopVideoCV2.addEventListener("click", stopCV2, false);
 startVideoCV2.addEventListener("click", startCV2, false);
 
 function startCV2(e) {
-	if (navigator.mediaDevices.getUserMedia) {
-		navigator.mediaDevices.getUserMedia({ video: true })
-			.then(function (stream) {
-				videoCV2.srcObject = stream;
-			})
-			.catch(function (err0r) {
-				console.log("Something went wrong!");
-			});
-		let videoCV1 = document.getElementById('videoElementCV');
-		let src = new cv.Mat(videoCV1.height, videoCV1.width, cv.CV_8UC4);
-		let dst = new cv.Mat(videoCV1.height, videoCV1.width, cv.CV_8UC1);
-		let cap = new cv.VideoCapture(videoCV1);
-		setTimeout(processVideo, 0);
-	}
+	let videoCV2 = document.getElementById('videoElementCV');
+	let src = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC4);
+	let dst = new cv.Mat(videoCV2.height, videoCV2.width, cv.CV_8UC1);
+	let cap = new cv.VideoCapture(videoCV2);
+	setTimeout(processVideo, 0);
 }	
 function stopCV2(e) {
 	if (videoCV2.srcObject != null) {
