@@ -137,6 +137,13 @@ function stopCV(e) {
 			var track = tracks[i];
 			track.stop();
 		}
+		var stream2 = videoCV2.srcObject;
+		var tracks2 = stream2.getTracks();
+
+		for (var i = 0; i < tracks2.length; i++) {
+			var track2 = tracks2[i];
+			track2.stop();
+		}
 		videoCV.srcObject = null;
 		videoCV2.srcObject = null;
 		src.delete();
